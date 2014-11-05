@@ -11,7 +11,7 @@
 
 @interface ViewController ()
 
-@property (nonatomic, strong) NLRMashapeClient *mashapeClient;
+@property (nonatomic, strong) NLRMashapeClient *weatherMashapeClient;
 
 @end
 
@@ -21,12 +21,12 @@
 {
     [super viewDidLoad];
 
-    self.mashapeClient = [[NLRMashapeClient alloc] initWithAPIName:@"george-vustrey-weather" mashapeAppKey:@"3QNzamv3LHmshiieGW72VL7wbWrBp1M39a2jsnGA8n1KjUajR4"];
+    self.weatherMashapeClient = [[NLRMashapeClient alloc] initWithAPIName:@"george-vustrey-weather" mashapeAppKey:@"3QNzamv3LHmshiieGW72VL7wbWrBp1M39a2jsnGA8n1KjUajR4"]; //DON'T USE THIS IN YOUR APP, YOU MUST GENERATE A KEY FOR EACH APP YOU WILL USE.
 }
 
 - (IBAction)makeRequest:(id)sender
 {
-    [self.mashapeClient GET:@"api.php?location=Tel+Aviv" parameters:nil success:^(NSURLSessionDataTask *task, id responseObject) {
+    [self.weatherMashapeClient GET:@"api.php" parameters:@{@"location" : @"Tel Aviv"} success:^(NSURLSessionDataTask *task, id responseObject) {
         NSString *responseDescription = [responseObject description];
         
         UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Success!" message:responseDescription delegate:nil cancelButtonTitle:nil otherButtonTitles:@"OK", nil];

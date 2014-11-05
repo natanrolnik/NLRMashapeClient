@@ -45,3 +45,7 @@ If you want to play more with this, you can just use the example project (it req
 Definitely, the best way to use `NLRMashapeClient` is with CocoaPods.
 
 Add to your podfile the following line:
+
+```
+pod 'NLRMashapeClient', '~> 0.1'
+```

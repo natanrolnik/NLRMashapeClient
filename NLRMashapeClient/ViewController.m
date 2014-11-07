@@ -21,7 +21,7 @@
 {
     [super viewDidLoad];
 
-    self.weatherMashapeClient = [[NLRMashapeClient alloc] initWithAPIName:@"george-vustrey-weather" mashapeAppKey:@"3QNzamv3LHmshiieGW72VL7wbWrBp1M39a2jsnGA8n1KjUajR4"]; //DON'T USE THIS IN YOUR APP, YOU MUST GENERATE A KEY FOR EACH APP YOU WILL USE.
+    self.weatherMashapeClient = [[NLRMashapeClient alloc] initWithAPIName:@"george-vustrey-weather" mashapeAppKey:@"PUT-HERE-YOUR-KEY"]; //GET A KEY FOR YOUR APP. YOU MUST GENERATE A KEY FOR EACH APP YOU WILL USE.
 }
 
 - (IBAction)makeRequest:(id)sender

@@ -11,25 +11,51 @@ When calling some API provided via Mashape, you can use the request example they
 
 Let's take as an example ["Ultimate Weather Forecasts"](https://www.mashape.com/george-vustrey/ultimate-weather-forecasts), a free API that return weather conditions. After you login to Mashape and have at least one application, you will get a `Mashape Key` for each app to make the requests for this app.
 
-First, declare it as a property of your controller. The ideal would be to have it as a singleton in your networking classes, but for the matter of this example, I'll just show as a property of some controller:
+First, create a subclass of NLRMashapeClient, and declare the singleton method as shown below.
 
 ```
-@property (nonatomic, strong) NLRMashapeClient *weatherMashapeClient;
+#import "NLRMashapeClient.h"
+
+@interface WeatherClient : NLRMashapeClient
+
++ (instancetype)sharedClient;
+
+@end
 
 ```
 
-Then, initialize the client. The API name is the part:
+Now, you should implement the singleton method with the correct API name and Mashape App Key. The API name is the part in the URL before the `.p.mashape.com`. For example, if the base URL for the weather API is `https://george-vustrey-weather.p.mashape.com`, you should use `george-vustrey-weather`. The app key you can take from the application page inside Mashape, and then press the "GET THE KEYS" button.
 
 ```
-self.weatherMashapeClient = [[NLRMashapeClient alloc] initWithAPIName:@"george-vustrey-weather" mashapeAppKey:@"THE-KEY-FOR-YOUR-APP"];
+
+#import "WeatherClient.h"
+
+@implementation WeatherClient
+
++ (instancetype)sharedClient
+{
+    static dispatch_once_t once;
+    static id sharedInstance;
+
+    dispatch_once(&once, ^{
+        sharedInstance = [[self alloc]  initWithAPIName:@"george-vustrey-weather" mashapeAppKey:@"THE-KEY-FOR-YOUR-APP"];
+    });
+
+    return sharedInstance;
+}
+
+@end
+
 ```
 
-For each Mashape API you will use, you should use one instance of `NLRMashapeClient`. **After your client is initialized correctly, you are done with configuration, and you can make as many calls as you wish, without needing to set the headers, keys, only what matters: the endpoint and parameters!**
+For each Mashape API you will use, you should use one subclass/singleton of `NLRMashapeClient`.
+
+**After your client is initialized correctly, you are done with configuration, and you can make as many calls as you wish, without needing to set the headers, keys, only what matters: the endpoint and parameters!**
 
 For example, if the `GET` examplified is `https://george-vustrey-weather.p.mashape.com/api.php`, and the parameter is `location`, you just call:
 
 ```
-    [self.weatherMashapeClient GET:@"api.php" parameters:@{@"location" : @"Tel Aviv"} success:^(NSURLSessionDataTask *task, id responseObject) {
+    [[WeatherClient sharedClient]] GET:@"api.php" parameters:@{@"location" : @"Tel Aviv"} success:^(NSURLSessionDataTask *task, id responseObject) {
         NSLog(@"%@", responseObject);
     } failure:^(NSURLSessionDataTask *task, NSError *error) {
         NSLog(@"%@", error);

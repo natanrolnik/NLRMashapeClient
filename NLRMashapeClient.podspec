@@ -16,7 +16,7 @@ Pod::Spec.new do |s|
   #
 
   s.name         = "NLRMashapeClient"
-  s.version      = "0.1.1"
+  s.version      = "0.2"
   s.summary      = "An easy way to call Mashape APIs"
 
   s.description  = <<-DESC

@@ -162,6 +162,7 @@
 				4CDA1C0A1A05649B00C9E1F7 /* Frameworks */,
 				4CDA1C0B1A05649B00C9E1F7 /* Resources */,
 				79321B4E50C75E604EC39A58 /* Copy Pods Resources */,
+				2B7B5E75490B8A5FCCD09A45 /* Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -247,6 +248,21 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
+		2B7B5E75490B8A5FCCD09A45 /* Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-NLRMashapeClient/Pods-NLRMashapeClient-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 		3C32B3AB3F738B2AF72C0D88 /* Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;

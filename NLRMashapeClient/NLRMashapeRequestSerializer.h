@@ -6,7 +6,7 @@
 //  Copyright (c) 2014 natanrolnik. All rights reserved.
 //
 
-#import "AFURLRequestSerialization.h"
+#import <AFNetworking/AFNetworking.h>
 
 @interface NLRMashapeRequestSerializer : AFHTTPRequestSerializer
 
